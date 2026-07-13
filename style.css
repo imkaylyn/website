@@ -13,7 +13,8 @@ body {
     color: #7A7C80;
 }
 
-h2, .white {
+/* Updated <h1> to share the styles of <h2> */
+h1, h2, .white {
     color: #fff;
 }
 
@@ -44,9 +45,11 @@ a {
     margin: 0;
 }
 
-.section-1 h2 {
+/* Adjusted for the new <h1> tag */
+.section-1 h1 {
     font-size: 1.7rem;
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .section-1 a {
@@ -73,22 +76,32 @@ a {
 }
 
 .section-2 a {
-    display: block;
+    display: inline-block; /* Changed from block to allow transform to work properly */
     padding: 5px;
     font-size: 1.2rem;
     padding-left: 0;
+    margin-bottom: 10px;
     width: 100px;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 /* animations / utilities */
-.section-2 a:hover {
-    font-size: 1.3rem;
+
+/* SEO/Performance fix: 
+  Changing font-size on hover causes Cumulative Layout Shift (CLS), lowering your Lighthouse score. 
+  Using transform: scale or translateX avoids triggering layout recalculations.
+*/
+.section-2 a:hover, 
+.section-2 a:focus {
     color: #fff;
+    transform: translateX(5px);
     cursor: pointer;
 }
 
-.section-1 a:hover {
+.section-1 a:hover,
+.section-1 a:focus {
     color: #fff;
+    transform: scale(1.1);
     cursor: pointer;
 }
 
